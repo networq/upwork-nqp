@@ -1,0 +1,16 @@
+name: networq:upwork
+description: Upwork types
+license: MIT
+
+dependencies:
+  networq:core: latest
+
+widgets:
+  upworkFreelancerProperties:
+    type: networq:upwork:freelancer
+    hook: properties
+    label: Upwork properties
+  upworkJobProperties:
+    type: networq:upwork:job
+    hook: properties
+    label: Upwork job

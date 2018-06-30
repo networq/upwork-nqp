@@ -1,0 +1,7 @@
+name: job
+labelPlural: Jobs
+labelSingular: Job
+
+fields:
+  id:
+    type: string
