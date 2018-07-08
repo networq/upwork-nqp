@@ -1,0 +1,48 @@
+{% extends "report.html.twig" %}
+
+{% block navigation %}
+<div class="list-group">
+    <a href="#introduction" class="list-group-item">Introduction</a>
+    <a href="#details" class="list-group-item">Details</a>
+    <a href="#competencies" class="list-group-item">Competencies</a>
+</div>
+{% endblock %}
+
+{% block content %}
+    <h1>Upwork job post "{{ node['networq:core:node']['name'] }}"</h1>
+
+    <p class="lead">This guide contains all the information you'll need to post the "{{ node['networq:core:node']['name'] }}" job-post to Upwork.</p>
+    <h2>Details</h2>
+    <p>{{ node['networq:core:node']['details']|nl2br }}</p>
+
+    
+
+    {% if node['networq:requirement:list'] is defined %}
+        <h2>Requirements</h2>
+        <p>This job has the following requirements:</p>
+        <ul class="list-group">
+        {% for requirement in node['networq:requirement:list']['requirements'] %}
+
+            <li class="list-group-item">
+                <h3>
+                    <a href="{{ requirement|nodePath }}">
+                    {{ requirement['networq:core:node']['name'] }}: {{ requirement['networq:core:node']['description'] }}
+                    </a>
+                </h3>
+                {% if requirement['networq:requirement:requirement'] is defined %}
+                <p>{{ requirement['networq:requirement:requirement']['instruction'] }}</p>
+                {% endif %}
+                {% if requirement['networq:core:node']['url'] %}
+                <a target="_blank" href="{{ requirement['networq:core:node']['url'] }}">{{ requirement['networq:core:node']['url'] }}</a><br />
+                {% endif %}
+
+                {% if requirement['networq:requirement:list'] is defined %}
+                {% set node = requirement %}
+                {% include '@networq:requirement/requirementsTab.html.twig' %}
+                {% endif %}
+
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

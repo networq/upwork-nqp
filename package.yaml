@@ -6,6 +6,11 @@ dependencies:
   networq:core: latest
 
 widgets:
+  upworkJobPostReport:
+    type: networq:upwork:job
+    hook: reports
+    label: Upwork job post
+    
   upworkFreelancerProperties:
     type: networq:upwork:freelancer
     hook: properties
